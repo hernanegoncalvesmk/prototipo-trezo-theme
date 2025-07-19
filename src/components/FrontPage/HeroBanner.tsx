@@ -3,21 +3,22 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const HeroBanner: React.FC = () => {
+  const { t } = useTranslation('common');
+
   return (
     <>
       <div className="pt-[125px] md:pt-[145px] lg:pt-[185px]">
         <div className="container 2xl:max-w-[1320px] mx-auto px-[12px] relative z-[1]">
           <div className="text-center mx-auto xl:max-w-[935px] mb-[30px] md:mb-[45px] lg:mb-[60px]">
             <h1 className="!text-[32px] md:!text-[40px] lg:!text-[50px] xl:!text-[60px] !mb-[13px] md:!mb-[22px] lg:!mb-[25px] xl:!mb-[30px] -tracking-[.5px] md:-tracking-[1px] xl:-tracking-[1.5px] !leading-[1.2]">
-              Insights On-the-Go: Access Your Dashboard Anywhere, Anytime
+              {t('landing.hero.title.main')} <span className="text-primary-600">{t('landing.hero.title.highlight')}</span>
             </h1>
 
             <p className="mx-auto leading-[1.6] md:text-[15px] lg:text-[16px] xl:text-[18px] md:max-w-[600px] lg:max-w-[650px] xl:max-w-[740px] xl:tracking-[.2px]">
-              Our intuitive interface transforms complex data into actionable
-              insights, empowering you to make informed decisions with
-              confidence.
+              {t('landing.hero.subtitle')}
             </p>
 
             <Link
@@ -28,7 +29,7 @@ const HeroBanner: React.FC = () => {
                 <i className="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-[20px] md:!text-[24px]">
                   person
                 </i>
-                Get started - It is free
+                {t('landing.hero.buttons.startFree')}
               </span>
             </Link>
           </div>

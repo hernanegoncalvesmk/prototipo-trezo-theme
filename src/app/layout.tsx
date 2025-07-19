@@ -7,6 +7,9 @@ import "swiper/css/bundle";
 // globals
 import "./globals.css";
 
+// i18n setup
+import "../../lib/i18n";
+
 import LayoutProvider from "@/providers/LayoutProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
