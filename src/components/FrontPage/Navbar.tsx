@@ -4,22 +4,20 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTranslation } from "react-i18next";
-import LanguageSelector from "@/components/LanguageSelector";
+
+const NAV_ITEMS = [
+  { name: "Home", path: "/" },
+  { name: "Features", path: "/front-pages/features/" },
+  { name: "Our Team", path: "/front-pages/team/" },
+  { name: "FAQ's", path: "/front-pages/faq/" },
+  { name: "Contact", path: "/front-pages/contact/" },
+  { name: "Admin", path: "/dashboard/ecommerce/", isAdmin: true },
+];
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const { t } = useTranslation('common');
   const handleToggle = () => setMenuOpen(!isMenuOpen);
-
-  const NAV_ITEMS = [
-    { name: t('landing.nav.home'), path: "/" },
-    { name: t('landing.nav.features'), path: "/front-pages/features/" },
-    { name: t('landing.nav.plans'), path: "/front-pages/team/" },
-    { name: t('landing.nav.contact'), path: "/front-pages/contact/" },
-    { name: "Admin", path: "/dashboard/ecommerce/", isAdmin: true },
-  ];
 
   // handleScroll
   useEffect(() => {
@@ -81,8 +79,8 @@ const Navbar: React.FC = () => {
             {/* For Big Devices */}
             <div className="hidden lg:flex items-center grow basis-full">
               <ul className="flex ltr:ml-[30px] rtl:mr-[30px] ltr:xl:ml-[55px] rtl:xl:mr-[55px] flex-row gap-[30px] xl:gap-[50px]">
-                {NAV_ITEMS.map((item, index) => (
-                  <li key={index}>
+                {NAV_ITEMS.map((item) => (
+                  <li key={item.path}>
                     <Link
                       href={item.path}
                       className={`font-medium transition-all hover:text-primary-600 text-[15px] xl:text-md dark:text-gray-400 ${
@@ -98,7 +96,6 @@ const Navbar: React.FC = () => {
               </ul>
 
               <div className="flex items-center ltr:ml-auto rtl:mr-auto gap-[15px]">
-                <LanguageSelector />
                 <Link
                   href="/authentication/sign-in"
                   className="inline-block text-purple-600 lg:text-[15px] xl:text-[16px] py-[11px] px-[17px] rounded-md transition-all font-medium border border-purple-600 hover:text-white hover:bg-purple-500 hover:border-purple-500"
@@ -107,7 +104,7 @@ const Navbar: React.FC = () => {
                     <i className="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-[20px] md:!text-[24px]">
                       login
                     </i>
-                    {t('landing.nav.login')}
+                    Login
                   </span>
                 </Link>
 
@@ -119,7 +116,7 @@ const Navbar: React.FC = () => {
                     <i className="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-[20px] md:!text-[24px]">
                       person
                     </i>
-                    {t('landing.nav.register')}
+                    Register
                   </span>
                 </Link>
               </div>
